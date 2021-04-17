@@ -26,8 +26,9 @@ spring:
             # 将时间改成 < now的时间，则访问localhost:8040/** -> user-center/**
             # eg. 访问http://localhost:8040/users/1 -> user-center/users/1
 #            - After=2030-01-20T17:42:47.789-07:00[America/Denver]
-            - TimeBetween=上午9:00,下午10:00
-
+            - TimeBetween=上午9:00,下午11:00
+          filters:
+            - AddRequestHeader=X-Request-Foo, Bar
 management:
   endpoints:
     web:
