@@ -29,6 +29,7 @@ spring:
             - TimeBetween=上午9:00,下午11:00
           filters:
             - AddRequestHeader=X-Request-Foo, Bar
+            - PreLog=a,b
 management:
   endpoints:
     web:
