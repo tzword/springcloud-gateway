@@ -28,9 +28,22 @@ spring:
 #            - After=2030-01-20T17:42:47.789-07:00[America/Denver]
             - TimeBetween=上午9:00,下午11:00
           filters:
-            - AddRequestHeader=X-Request-Foo, Bar
-            - PreLog=a,b
-management:
+#            - AddRequestHeader=X-Request-Foo, Bar
+#            - PreLog=a,b
+            - name: RequestRateLimiter
+              args:
+                # 令牌桶每秒填充平均速率
+                redis-rate-limiter.replenishRate: 1
+                # 令牌桶的上限
+                redis-rate-limiter.burstCapacity: 2
+                # 使用SpEL表达式从Spring容器中获取Bean对象
+                key-resolver: "#{@pathKeyResolver}"
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 1323!Q@#EMSD%$^
+    database: 0
+agement:
   endpoints:
     web:
       exposure:
